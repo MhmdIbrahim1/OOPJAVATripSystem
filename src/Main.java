@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -106,7 +104,7 @@ public class Main {
                         break;
 
                     case 6:
-                        TripsMethodsSystem.saveData(trip1);
+                        TripsMethodsSystem.saveDataToFile(trip1);
                         break;
 
                     case 7:

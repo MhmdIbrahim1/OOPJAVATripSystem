@@ -3,18 +3,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
+// TripsMethodsSystem That have all required system methods
 public class TripsMethodsSystem  {
 
+    // Trips ArrayList will have trip Information
     public static ArrayList<Trip> trips = new ArrayList<>();
 
 
+    // method that add new trip inside trips arrayList
     public static void addNewTrip(Trip trip1) {
         trips.add(trip1);
         System.out.println("add trip successfully");
     }
 
 
+    // method that add new Passenger inside specific trip
     public static void addNewPassengerInTrip(Trip inTrip, Passenger newPassenger) {
         if (isTripFound(inTrip)) {
             if (isMaxPassengerInTrip(inTrip)) {
@@ -31,11 +34,14 @@ public class TripsMethodsSystem  {
             System.out.println("Cant find the trip");
         }
     }
+
+    // method that add new Driver inside specific trip
     public  static void addDriverToTrip(Trip inTrip , Driver newDriver){
         inTrip.getDriverList().add(newDriver);
         System.out.println("added driver successfully");
     }
 
+    // method that remove  Passenger from specific trip
     public static void removePassengerFromTrip(Trip outTrip, Passenger removePassenger) {
 
         if (isTripFound(outTrip)) {
@@ -50,7 +56,7 @@ public class TripsMethodsSystem  {
         }
     }
 
-
+    // method that calculate the average of passenger per trio
     public static void averageOfPassengers(Trip t) {
         System.out.println("The average number of passengers per trip on "
                 + t.getPassengerList().size()
@@ -58,8 +64,9 @@ public class TripsMethodsSystem  {
 
     }
 
+    // Method checks if a trip already exists before adding a passenger to it
     public static boolean isTripFound(Trip trip1) {
-        boolean isTripFound = false;
+        boolean isTripFound = false; //  flag variable
         for (Trip t : trips
         ) {
             if (trip1.equals(t)) {
@@ -70,11 +77,13 @@ public class TripsMethodsSystem  {
         return isTripFound;
     }
 
+    //Method checks if the trip is full or not before adding a passenger to it
     public static boolean isMaxPassengerInTrip(Trip trip2) {
 
         return trip2.getPassengerList().size() < trip2.getMAXIMUM_NUMBER_OF_PASSENGER();
     }
 
+    //Method checks if there is a passenger with the same ID present on a particular flight
     public static boolean isPassengerIsAlreadyFound(Trip trip3, Passenger passenger) {
         boolean passengerIsAlreadyInTrip = false;
         for (Passenger search : trip3.getPassengerList()
@@ -86,6 +95,8 @@ public class TripsMethodsSystem  {
         }
         return passengerIsAlreadyInTrip;
     }
+
+    //Method prints all trip information
     public static ArrayList<Trip> displayTrips() {
         Collections.sort(trips);
         for (Trip trip : trips) {
@@ -94,23 +105,27 @@ public class TripsMethodsSystem  {
         return trips;
     }
 
-    public static void saveData(Trip trip) {
+    //A method that saves all trip information into a file
+    public static void saveDataToFile(Trip trip) {
 
-        BufferedWriter bufferedWriter = null;
-        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null; // create bufferedWriter
+        FileWriter fileWriter = null;// create fileWriter
 
         try {
-            StringBuilder content = new StringBuilder();
+            StringBuilder content = new StringBuilder(); // create string builder
+            // loop through the trips arrayList to adding all data into file
             for (Trip trip0 : trips) {
                 content.append(trip0.toString()).append("\n");
             }
 
-            fileWriter = new FileWriter("data.txt");
+            fileWriter = new FileWriter("data.txt"); // create file named "data"
             bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(content.toString());
+            bufferedWriter.write(content.toString()); // write all data into file
 
             System.out.println("Done");
 
+
+            // some catching of any exception might happen
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -129,8 +144,12 @@ public class TripsMethodsSystem  {
 
     }
 
+
+    // method that exit from Input system
     public static void exitFromSystem() {
         System.out.println("Goodbye!");
         System.exit(0);
     }
 }
+
+// end

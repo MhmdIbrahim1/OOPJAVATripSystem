@@ -45,7 +45,7 @@ public class Passenger extends Person {
     }
 
 
-    // Object method To compare between the current and new ID
+    // Equals method To compare between the current ID and new ID
     @Override
     public boolean equals(Object obj) {
         Passenger p1 = (Passenger) obj;
