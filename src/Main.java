@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -94,7 +95,6 @@ public class Main {
 
                     case 3:
                         TripsMethodsSystem.removePassengerFromTrip(trip1, passenger);
-
                         break;
 
                     case 4:

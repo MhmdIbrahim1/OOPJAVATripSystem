@@ -40,7 +40,7 @@ public class TripsMethodsSystem  {
 
         if (isTripFound(outTrip)) {
             if (isPassengerIsAlreadyFound(outTrip,  removePassenger)) {
-                outTrip.getPassengerList().remove(removePassenger);
+                outTrip.getPassengerList().removeIf(passenger ->passenger.getId().equals(removePassenger.getId()));
                 System.out.println("passenger is deleted");
             } else {
                 System.out.println("Passenger is not on the trip");
