@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 // TripsMethodsSystem That have all required system methods
-public class TripsMethodsSystem  {
+public class TripsMethodsSystem {
 
     // Trips ArrayList will have trip Information
     public static ArrayList<Trip> trips = new ArrayList<>();
@@ -36,7 +36,7 @@ public class TripsMethodsSystem  {
     }
 
     // method that add new Driver inside specific trip
-    public  static void addDriverToTrip(Trip inTrip , Driver newDriver){
+    public static void addDriverToTrip(Trip inTrip, Driver newDriver) {
         inTrip.getDriverList().add(newDriver);
         System.out.println("added driver successfully");
     }
@@ -45,8 +45,8 @@ public class TripsMethodsSystem  {
     public static void removePassengerFromTrip(Trip outTrip, Passenger removePassenger) {
 
         if (isTripFound(outTrip)) {
-            if (isPassengerIsAlreadyFound(outTrip,  removePassenger)) {
-                outTrip.getPassengerList().removeIf(passenger ->passenger.getId().equals(removePassenger.getId()));
+            if (isPassengerIsAlreadyFound(outTrip, removePassenger)) {
+                outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
                 System.out.println("passenger is deleted");
             } else {
                 System.out.println("Passenger is not on the trip");
@@ -88,7 +88,7 @@ public class TripsMethodsSystem  {
         boolean passengerIsAlreadyInTrip = false;
         for (Passenger search : trip3.getPassengerList()
         ) {
-            if (search.getId().equals(passenger.getId())){
+            if (search.getId().equals(passenger.getId())) {
                 passengerIsAlreadyInTrip = true;
                 break;
             }
@@ -98,13 +98,29 @@ public class TripsMethodsSystem  {
 
     //Method prints all trip information
     public static ArrayList<Trip> displayTrips() {
+        // sort the Information by Trip number
         Collections.sort(trips);
-        for (Trip trip : trips) {
-            System.out.println(trip);
+        // check if the trip is empty first
+        if (trips.isEmpty()) {
+            System.out.println("Cant find any trips");
+        } else {
+            // printing all trips information
+            for (Trip trip : trips) {
+                System.out.println(trip);
+            }
         }
         return trips;
     }
 
+    public static boolean isPhoneNumber(String phoneNumber){
+        if(phoneNumber.length() != 11){
+            System.out.println("Phone number must be 11 digits.please Enter Valid Phone number");
+            return false;
+
+        } else {
+            return true;
+        }
+    }
     //A method that saves all trip information into a file
     public static void saveDataToFile(Trip trip) {
 
@@ -117,13 +133,10 @@ public class TripsMethodsSystem  {
             for (Trip trip0 : trips) {
                 content.append(trip0.toString()).append("\n");
             }
-
-            fileWriter = new FileWriter("data.txt"); // create file named "data"
+            fileWriter = new FileWriter("AllTripData.txt"); // create file named "data"
             bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(content.toString()); // write all data into file
-
-            System.out.println("Done");
-
+            System.out.println("Write data into file successfully");
 
             // some catching of any exception might happen
         } catch (IOException e) {

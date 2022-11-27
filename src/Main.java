@@ -10,17 +10,25 @@ public class Main {
         Passenger passenger = new Passenger();
         Trip trip1 = new Trip();
 
+        // INPUT SYSTEM
         while (true) {
             try {
+                System.out.println("----------------------------");
                 System.out.println("1- Offer a new trip");
+                System.out.println("----------------------------");
                 System.out.println("2- Add a passenger to a specific trip");
+                System.out.println("----------------------------");
                 System.out.println("3- Remove a passenger from a specific trip");
+                System.out.println("----------------------------");
                 System.out.println("4- Retrieve the average number of passengers per trip of a specified date");
+                System.out.println("----------------------------");
                 System.out.println("5- Display all available trips");
+                System.out.println("----------------------------");
                 System.out.println("6- Save all the data into a text file");
+                System.out.println("----------------------------");
                 System.out.println("7- Exit");
 
-                int choice = scanner.nextInt();
+                int choice = Integer.parseInt(scanner.next());
 
                 switch (choice) {
                     case 1:
@@ -38,7 +46,16 @@ public class Main {
                         d.setAge(scanner.nextInt());
                         scanner.nextLine();  // Consume newline left-over;
                         System.out.println("Add driver phoneNumber");
-                        d.setPhoneNumber(scanner.nextLine());
+                        int driverPhoneNumber =scanner.nextInt();
+                       while (!(driverPhoneNumber >11)) {
+                           if (TripsMethodsSystem.isPhoneNumber(String.valueOf(driverPhoneNumber))) {
+                               d.setPhoneNumber(String.valueOf(driverPhoneNumber));
+                           } else {
+                               driverPhoneNumber = scanner.nextInt();
+                               d.setPhoneNumber(String.valueOf(driverPhoneNumber));
+                           }
+                       }
+                        scanner.nextLine();  // Consume newline left-over;
                         System.out.println("Add driver Gender");
                         d.setGender(scanner.nextLine());
                         System.out.println("Is Marred (true or false)");
@@ -66,8 +83,7 @@ public class Main {
 
                     case 2:
                         System.out.println("Enter number of passenger you need to add");
-                        int numberOfAdding = scanner.nextInt();
-                        scanner.nextLine();  // Consume newline left-over
+                        int numberOfAdding = Integer.parseInt(scanner.next());
                         for (int i = 0; i < numberOfAdding; i++) {
                             passenger = new Passenger();
                             System.out.println("Adding passenger to the trip...");
@@ -78,9 +94,16 @@ public class Main {
                             passenger.setName(scanner.nextLine());
                             System.out.println("Add Passenger age");
                             passenger.setAge(scanner.nextInt());
-                            scanner.nextLine();  // Consume newline left-over
-                            System.out.println("Add Passenger phoneNumber");
-                            passenger.setPhoneNumber(scanner.nextLine());
+                            int passengerPhoneNumber =scanner.nextInt();
+                            while (!(passengerPhoneNumber >11)) {
+                                if (TripsMethodsSystem.isPhoneNumber(String.valueOf(passengerPhoneNumber))) {
+                                    passenger.setPhoneNumber(String.valueOf(passengerPhoneNumber));
+                                } else {
+                                    passengerPhoneNumber = scanner.nextInt();
+                                    passenger.setPhoneNumber(String.valueOf(passengerPhoneNumber));
+                                }
+                            }
+                            scanner.nextLine();  // Consume newline left-over;
                             System.out.println("Enter Passenger Addresses");
                             passenger.setAddress(scanner.nextLine());
                             System.out.println("having ticket? (true or false)");
@@ -120,4 +143,5 @@ public class Main {
 
         }
     }
+
 }

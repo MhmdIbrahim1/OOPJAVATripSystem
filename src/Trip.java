@@ -26,7 +26,8 @@ public class Trip implements Comparable<Trip> {
     }
 
     // multi arg constructor
-    public Trip(Integer tripNumber, Driver driver, Date date, String startTime, String endTime, String destination, Passenger p) {
+    public Trip(Integer tripNumber, Driver driver, Date date, String startTime
+            , String endTime, String destination, Passenger p) {
         this.tripNumber = tripNumber;
         this.driver = driver;
         this.date = date;
