@@ -42,11 +42,11 @@ public class TripsMethodsSystem {
     }
 
     // method that remove  Passenger from specific trip
-    public static void removePassengerFromTrip(Trip outTrip, Passenger removePassenger) {
-
+    public static void removePassengerFromTrip( Trip outTrip , Passenger removePassenger) {
         if (isTripFound(outTrip)) {
             if (isPassengerIsAlreadyFound(outTrip, removePassenger)) {
-                outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
+               outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
+
                 System.out.println("passenger is deleted");
             } else {
                 System.out.println("Passenger is not on the trip");
@@ -66,15 +66,9 @@ public class TripsMethodsSystem {
 
     // Method checks if a trip already exists before adding a passenger to it
     public static boolean isTripFound(Trip trip1) {
-        boolean isTripFound = false; //  flag variable
-        for (Trip t : trips
-        ) {
-            if (trip1.equals(t)) {
-                isTripFound = true;
-                break;
-            }
-        }
-        return isTripFound;
+
+        // in one line I check if there is a trip or not
+        return !trips.isEmpty();
     }
 
     //Method checks if the trip is full or not before adding a passenger to it
@@ -112,6 +106,7 @@ public class TripsMethodsSystem {
         return trips;
     }
 
+    // Method confirms that the user must enter a valid phone number consisting of 11 digits
     public static boolean isPhoneNumber(String phoneNumber){
         if(phoneNumber.length() != 11){
             System.out.println("Phone number must be 11 digits.please Enter Valid Phone number");

@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -11,8 +12,13 @@ public class Main {
         Trip trip1 = new Trip();
 
         // INPUT SYSTEM
+
+
+        // while loop with true to keep asking the user until he presses the exit option
         while (true) {
+            // try to catch any input exception from the user
             try {
+                // menu of trip system
                 System.out.println("----------------------------");
                 System.out.println("1- Offer a new trip");
                 System.out.println("----------------------------");
@@ -28,9 +34,11 @@ public class Main {
                 System.out.println("----------------------------");
                 System.out.println("7- Exit");
 
+                // store the choice from the user
                 int choice = Integer.parseInt(scanner.next());
-
+                // switch cases the loop throw choices of menu
                 switch (choice) {
+                 // case one i take all driver information first before the trip
                     case 1:
                         System.out.println("Enter number of trips");
                         int tripsNumber = scanner.nextInt();
@@ -46,8 +54,11 @@ public class Main {
                         d.setAge(scanner.nextInt());
                         scanner.nextLine();  // Consume newline left-over;
                         System.out.println("Add driver phoneNumber");
+                        // take phone number from the user
                         int driverPhoneNumber =scanner.nextInt();
+                        // check if the user entering phone number in right way
                        while (!(driverPhoneNumber >11)) {
+                           // keep asking the user unit he enters valid phone number
                            if (TripsMethodsSystem.isPhoneNumber(String.valueOf(driverPhoneNumber))) {
                                d.setPhoneNumber(String.valueOf(driverPhoneNumber));
                            } else {
@@ -60,8 +71,11 @@ public class Main {
                         d.setGender(scanner.nextLine());
                         System.out.println("Is Marred (true or false)");
                         d.setMarried(scanner.nextBoolean());
+                        // loop throw all trips information and take it from the user
                         for (int i = 0; i < tripsNumber; i++) {
+                            // crete new object of trip
                             trip1 = new Trip();
+                            // get the actual date that we are creating the trip
                             trip1.getDate();
                             System.out.println("Enter Trip ID");
                             trip1.setTripNumber(scanner.nextInt());
@@ -76,15 +90,18 @@ public class Main {
                             System.out.println("Enter trip destination");
                             trip1.setDestination(scanner.nextLine());
                         }
+                        // calling the tow mecthod thad adding anew trip and new driver inside the trip
                         TripsMethodsSystem.addNewTrip((trip1));
                         TripsMethodsSystem.addDriverToTrip(trip1, d);
-
+                        // brake case 1
                         break;
 
                     case 2:
                         System.out.println("Enter number of passenger you need to add");
-                        int numberOfAdding = Integer.parseInt(scanner.next());
-                        for (int i = 0; i < numberOfAdding; i++) {
+                        int numberOfAddingPassengers = Integer.parseInt(scanner.next());
+                        // loop throw number of adding passenger
+                        // then storing all passenger information
+                        for (int i = 0; i < numberOfAddingPassengers; i++) {
                             passenger = new Passenger();
                             System.out.println("Adding passenger to the trip...");
                             scanner.nextLine();  // Consume newline left-over
@@ -95,6 +112,7 @@ public class Main {
                             System.out.println("Add Passenger age");
                             passenger.setAge(scanner.nextInt());
                             int passengerPhoneNumber =scanner.nextInt();
+                            // check if the user entering valid phone number
                             while (!(passengerPhoneNumber >11)) {
                                 if (TripsMethodsSystem.isPhoneNumber(String.valueOf(passengerPhoneNumber))) {
                                     passenger.setPhoneNumber(String.valueOf(passengerPhoneNumber));
@@ -108,33 +126,40 @@ public class Main {
                             passenger.setAddress(scanner.nextLine());
                             System.out.println("having ticket? (true or false)");
                             passenger.setTicket(scanner.nextBoolean());
+                            // add all information of passenger inside the trip
                             TripsMethodsSystem.addNewPassengerInTrip(trip1, passenger);
-
                         }
-
+                        // breaking case 2
                         break;
 
                     case 3:
-                        TripsMethodsSystem.removePassengerFromTrip(trip1, passenger);
+                        // case 3 that remove passenger from trip
+                            TripsMethodsSystem.removePassengerFromTrip(trip1, passenger);
                         break;
 
                     case 4:
+                        // case 4 get the average of passengers per trip
                         TripsMethodsSystem.averageOfPassengers(trip1);
                         break;
 
                     case 5:
+                        // display all trips information
                         TripsMethodsSystem.displayTrips();
                         break;
 
                     case 6:
+                        // in this case storing the whole data inside file
                         TripsMethodsSystem.saveDataToFile(trip1);
                         break;
 
                     case 7:
+                        // this case to break the loop
                         TripsMethodsSystem.exitFromSystem();
                         return;
-
+                    default:
+                        System.out.println("You entered Invalid input try Again or press 7 to exit");
                 }
+
 
             } catch (InputMismatchException inputMismatchException) {
                 System.out.println("Enter valid inputs");
