@@ -1,8 +1,8 @@
 // child class inherit from person class
 public class Driver extends Person{
-    protected String gender; // attribute gender
+    private String gender; // attribute gender
 
-    protected boolean married; // attribute married
+    private boolean married; // attribute married
 
 
     // zero arg-constructor

@@ -9,17 +9,17 @@ public class Trip implements Comparable<Trip> {
     Passenger passenger; // Attribute passenger
     protected static Date date = new Date(); // Attribute Date that take the current Date
 
-     int MAXIMUM_NUMBER_OF_PASSENGER; //Attribute MAXIMUM_NUMBER_OF_PASSENGER
+    protected int MAXIMUM_NUMBER_OF_PASSENGER; //Attribute MAXIMUM_NUMBER_OF_PASSENGER
 
     protected String startTime; // Attribute start time
     protected String endTime; // Attribute end time
     protected String destination; // Attribute destination
 
     //ArrayList takes Passenger information
-    ArrayList<Passenger> passengerList = new ArrayList<>();
+   protected ArrayList<Passenger> passengerList = new ArrayList<>();
 
     //ArrayList takes Passenger information
-    ArrayList<Driver> driverList = new ArrayList<>();
+   protected ArrayList<Driver> driverList = new ArrayList<>();
 
     // zero arg-constructor
     public Trip() {

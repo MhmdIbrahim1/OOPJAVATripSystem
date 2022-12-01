@@ -1,8 +1,8 @@
 // child class inherit from person class
 public class Passenger extends Person {
 
-    protected boolean ticket; // attribute ticket
-    protected String  address;  // attribute address
+    private boolean ticket; // attribute ticket
+    private String  address;  // attribute address
 
 
     // zero arg-constructor

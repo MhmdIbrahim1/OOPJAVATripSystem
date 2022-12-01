@@ -3,19 +3,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 // TripsMethodsSystem That have all required system methods
 public class TripsMethodsSystem {
 
     // Trips ArrayList will have trip Information
     public static ArrayList<Trip> trips = new ArrayList<>();
 
-
     // method that add new trip inside trips arrayList
     public static void addNewTrip(Trip trip1) {
         trips.add(trip1);
         System.out.println("add trip successfully");
     }
-
 
     // method that add new Passenger inside specific trip
     public static void addNewPassengerInTrip(Trip inTrip, Passenger newPassenger) {
@@ -24,8 +27,15 @@ public class TripsMethodsSystem {
                 if (isPassengerIsAlreadyFound(inTrip, newPassenger)) {
                     System.out.println("sorry, Passenger Already in the trip");
                 } else {
-                    inTrip.getPassengerList().add(newPassenger);
-                    System.out.println("added passenger successfully");
+                    Scanner inputTripId = new Scanner(System.in);
+                    System.out.println("Enter trip ID to delete  passenger from it");
+                    int checkTripNo = inputTripId.nextInt();
+                    for (Trip trip : trips) {
+                        if (trip.getTripNumber().equals(checkTripNo)) {
+                            inTrip.getPassengerList().add(newPassenger);
+                            System.out.println("added passenger successfully");
+                        }
+                    }
                 }
             } else {
                 System.out.println("Trip is fully");
@@ -42,12 +52,20 @@ public class TripsMethodsSystem {
     }
 
     // method that remove  Passenger from specific trip
-    public static void removePassengerFromTrip( Trip outTrip , Passenger removePassenger) {
+    public static void removePassengerFromTrip(Trip outTrip, Passenger removePassenger) {
         if (isTripFound(outTrip)) {
             if (isPassengerIsAlreadyFound(outTrip, removePassenger)) {
-               outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
-
-                System.out.println("passenger is deleted");
+                if (Objects.equals(outTrip.getTripNumber(), outTrip.tripNumber)) {
+                    Scanner inputTripId = new Scanner(System.in);
+                    System.out.println("Enter trip ID to add this passenger on it");
+                    int checkTripNo = inputTripId.nextInt();
+                    for (Trip trip : trips) {
+                        if (trip.getTripNumber().equals(checkTripNo)) {
+                            outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
+                            System.out.println("passenger is deleted");
+                        }
+                    }
+                }
             } else {
                 System.out.println("Passenger is not on the trip");
             }
@@ -55,30 +73,40 @@ public class TripsMethodsSystem {
             System.out.println("The trip is not found");
         }
     }
-
     // method that calculate the average of passenger per trio
     public static void averageOfPassengers(Trip t) {
-        System.out.println("The average number of passengers per trip on "
-                + t.getPassengerList().size()
-                / (double) t.getMAXIMUM_NUMBER_OF_PASSENGER() * 100);
+        Scanner scanTripNo = new Scanner(System.in);
+        System.out.println("Enter Trip ID:");
+        int tripNo = scanTripNo.nextInt();
 
+        int countPassenger = 0;
+        int SumOfPassengers = 0;
+
+        for (Trip trip : trips) {
+            if (Objects.equals(trip.getTripNumber(), tripNo)) {
+                countPassenger++;
+                SumOfPassengers += trip.getPassengerList().size();
+            }
+        }
+        double average = (double) SumOfPassengers / countPassenger;
+        System.out.println("The average number of passengers per tripNo: " + average);
     }
 
     // Method checks if a trip already exists before adding a passenger to it
-    public static boolean isTripFound(Trip trip1) {
+    private static boolean isTripFound(Trip trip1) {
 
         // in one line I check if there is a trip or not
         return !trips.isEmpty();
     }
 
     //Method checks if the trip is full or not before adding a passenger to it
-    public static boolean isMaxPassengerInTrip(Trip trip2) {
+    private static boolean isMaxPassengerInTrip(Trip trip2) {
 
         return trip2.getPassengerList().size() < trip2.getMAXIMUM_NUMBER_OF_PASSENGER();
     }
 
     //Method checks if there is a passenger with the same ID present on a particular flight
-    public static boolean isPassengerIsAlreadyFound(Trip trip3, Passenger passenger) {
+    private static boolean isPassengerIsAlreadyFound(Trip trip3, Passenger passenger) {
         boolean passengerIsAlreadyInTrip = false;
         for (Passenger search : trip3.getPassengerList()
         ) {
@@ -91,7 +119,7 @@ public class TripsMethodsSystem {
     }
 
     //Method prints all trip information
-    public static ArrayList<Trip> displayTrips() {
+    public static void displayTrips() {
         // sort the Information by Trip number
         Collections.sort(trips);
         // check if the trip is empty first
@@ -103,19 +131,18 @@ public class TripsMethodsSystem {
                 System.out.println(trip);
             }
         }
-        return trips;
     }
 
     // Method confirms that the user must enter a valid phone number consisting of 11 digits
-    public static boolean isPhoneNumber(String phoneNumber){
-        if(phoneNumber.length() != 11){
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        if (phoneNumber.length() != 11) {
             System.out.println("Phone number must be 11 digits.please Enter Valid Phone number");
             return false;
-
         } else {
             return true;
         }
     }
+
     //A method that saves all trip information into a file
     public static void saveDataToFile(Trip trip) {
 
@@ -159,5 +186,4 @@ public class TripsMethodsSystem {
         System.exit(0);
     }
 }
-
 // end

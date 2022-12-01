@@ -1,10 +1,10 @@
 
 //This is the super class that will be inherited for both the Passenger and Driver classes
-public class Person {
-    protected  String name; // Attribute name
-    protected String id;// Attribute id
-    protected int age; // Attribute age
-    protected String phoneNumber; // Attribute phoneNUmber
+abstract public class Person {
+    private   String name; // Attribute name
+    private String id;// Attribute id
+    private int age; // Attribute age
+    private String phoneNumber; // Attribute phoneNUmber
 
     // zero Arg Constructor
     public Person() {
