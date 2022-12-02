@@ -1,10 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,30 +22,30 @@ public class TripsMethodsSystem {
         if (isTripFound(inTrip)) {
             if (isMaxPassengerInTrip(inTrip)) {
                 if (isPassengerIsAlreadyFound(inTrip, newPassenger)) {
-                    System.out.println("sorry, Passenger Already in the trip");
+                    System.out.println(">>>>>>>>>>>sorry, Passenger Already in the trip<<<<<<<<<<<");
                 } else {
                     Scanner inputTripId = new Scanner(System.in);
-                    System.out.println("Enter trip ID to delete  passenger from it");
+                    System.out.println(">>>>>>>>>>>Enter trip ID to add  passenger from it<<<<<<<<<<<");
                     int checkTripNo = inputTripId.nextInt();
                     for (Trip trip : trips) {
                         if (trip.getTripNumber().equals(checkTripNo)) {
                             inTrip.getPassengerList().add(newPassenger);
-                            System.out.println("added passenger successfully");
+                            System.out.println(">>>>>>>>>>>added passenger successfully<<<<<<<<<<<");
                         }
                     }
                 }
             } else {
-                System.out.println("Trip is fully");
+                System.out.println(">>>>>>>>>>>Trip is fully<<<<<<<<<<<");
             }
         } else {
-            System.out.println("Cant find the trip");
+            System.out.println(">>>>>>>>>>>Cant find the trip<<<<<<<<<<<");
         }
     }
 
     // method that add new Driver inside specific trip
     public static void addDriverToTrip(Trip inTrip, Driver newDriver) {
         inTrip.getDriverList().add(newDriver);
-        System.out.println("added driver successfully");
+        System.out.println(">>>>>>>>>>>added driver successfully<<<<<<<<<<<");
     }
 
     // method that remove  Passenger from specific trip
@@ -57,27 +54,27 @@ public class TripsMethodsSystem {
             if (isPassengerIsAlreadyFound(outTrip, removePassenger)) {
                 if (Objects.equals(outTrip.getTripNumber(), outTrip.tripNumber)) {
                     Scanner inputTripId = new Scanner(System.in);
-                    System.out.println("Enter trip ID to add this passenger on it");
+                    System.out.println(">>>>>>>>>>>Enter trip ID to delete this passenger on it<<<<<<<<<<<");
                     int checkTripNo = inputTripId.nextInt();
                     for (Trip trip : trips) {
                         if (trip.getTripNumber().equals(checkTripNo)) {
                             outTrip.getPassengerList().removeIf(passenger -> passenger.getId().equals(removePassenger.getId()));
-                            System.out.println("passenger is deleted");
+                            System.out.println(">>>>>>>>>>>passenger is deleted<<<<<<<<<<<");
                         }
                     }
                 }
             } else {
-                System.out.println("Passenger is not on the trip");
+                System.out.println(">>>>>>>>>>>Passenger is not on the trip<<<<<<<<<<<");
             }
         } else {
-            System.out.println("The trip is not found");
+            System.out.println("<<<<<<<<<<<The trip is not found<<<<<<<<<<<");
         }
     }
     // method that calculate the average of passenger per trio
     public static void averageOfPassengers(Trip t) {
         Scanner scanTripNo = new Scanner(System.in);
-        System.out.println("Enter Trip ID:");
-        int tripNo = scanTripNo.nextInt();
+        System.out.println(">>>>>>>>>>>Enter Trip ID:<<<<<<<<<<<");
+        int tripNo = Integer.parseInt(scanTripNo.nextLine());
 
         int countPassenger = 0;
         int SumOfPassengers = 0;
@@ -89,7 +86,7 @@ public class TripsMethodsSystem {
             }
         }
         double average = (double) SumOfPassengers / countPassenger;
-        System.out.println("The average number of passengers per tripNo: " + average);
+        System.out.println("The average number of passengers per tripNo >>>>>: " + average+ " <<<<<");
     }
 
     // Method checks if a trip already exists before adding a passenger to it
@@ -124,7 +121,7 @@ public class TripsMethodsSystem {
         Collections.sort(trips);
         // check if the trip is empty first
         if (trips.isEmpty()) {
-            System.out.println("Cant find any trips");
+            System.out.println(">>>>>>>>>>>Cant find any trips<<<<<<<<<<<");
         } else {
             // printing all trips information
             for (Trip trip : trips) {
@@ -136,7 +133,7 @@ public class TripsMethodsSystem {
     // Method confirms that the user must enter a valid phone number consisting of 11 digits
     public static boolean isValidPhoneNumber(String phoneNumber) {
         if (phoneNumber.length() != 11) {
-            System.out.println("Phone number must be 11 digits.please Enter Valid Phone number");
+            System.out.println(">>>>>>>>>>>Phone number must be 11 digits.please Enter Valid Phone number<<<<<<<<<<<");
             return false;
         } else {
             return true;

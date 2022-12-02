@@ -1,17 +1,58 @@
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
+//        // test cases without takes input from the user
+//        Trip tripDate_1  = new Trip();
+//       Date d =  tripDate_1.getDate();
+//        Driver testD = new Driver("Mohamed Ismail","01",30,"01027791175","male");
+//        Passenger testP_0 = new Passenger("Ahmed Mahmoud","20814214",20,"01027791147",true, "cairo");
+//        Trip testT_0 = new Trip(1,20,testD,d,"10Am","12AM","cairo",testP_0);
+//        Passenger testP_1 = new Passenger("Mohamed Saada","1710242",30,"01027797594",true, "Zagazig");
+//        Passenger testP_2 = new Passenger("Ahmed Mahmoud","51471",20,"0111271147",true, "Aswan");
+//        Passenger testP_3 = new Passenger("Ahmed Mahmoud","98574",20,"01122771147",true, "Alex");
+//        Driver testD_1 = new Driver("Maryam Ahmed","02",35,"01252369875","Female");
+//        Trip testT_1 = new Trip(2,20,testD_1,d,"10Am","12AM","cairo",testP_0);
+//        Passenger testP_4 = new Passenger("Eman Ahmed","7741147",21,"010236144",true, "New Cairo");
+//        Passenger testP_5 = new Passenger("Ahmed Mahmoud","6636695",17,"01039985",true, "Madinht Nasr");
+//        Passenger testP_6 = new Passenger("Ahmed Mahmoud","663214",36,"0111147414",true, "3bas el32ad");
+//        Passenger testP_7 = new Passenger("Mohamed Saada","474149",37,"01222321147",true, "cairo");
+//        TripsMethodsSystem.addNewTrip(testT_0);
+//        TripsMethodsSystem.addDriverToTrip(testT_0,testD);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_0,testP_0);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_0,testP_1);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_0,testP_2);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_0,testP_3);
+//        TripsMethodsSystem.addNewTrip(testT_1);
+//        TripsMethodsSystem.addDriverToTrip(testT_1,testD_1);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_1,testP_4);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_1,testP_5);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_1,testP_6);
+//        TripsMethodsSystem.addNewPassengerInTrip(testT_1,testP_7);
+//        System.out.println("----------before remove passengers---------------");
+//        TripsMethodsSystem.displayTrips();
+//        //remove
+//        TripsMethodsSystem.removePassengerFromTrip(testT_0,testP_1);
+//        TripsMethodsSystem.removePassengerFromTrip(testT_0,testP_3);
+//
+//        // try to remove passenger is already removed
+//        System.out.println("-------------try to remove passenger is already removed----------");
+//        TripsMethodsSystem.removePassengerFromTrip(testT_1,testP_1);
+//        System.out.println("------------after remove passengers----------");
+//        TripsMethodsSystem.displayTrips();
+
+
         Scanner scanner = new Scanner(System.in);
         Driver d;
         Passenger passenger = new Passenger();
         Trip trip1 = new Trip();
 
-        // INPUT SYSTEM
+    //  testing now with  INPUT SYSTEM
 
-        // while loop with true to keep asking the user until he presses the exit option
+      //   while loop with true to keep asking the user until he presses the exit option
         while (true) {
             // try to catch any input exception from the user
             try {
@@ -34,7 +75,7 @@ public class Main {
                 // store the choice from the user
                 int choice =0;
                 try {
-                     choice = Integer.parseInt(scanner.next());
+                     choice =scanner.nextInt();
                 } catch (NumberFormatException ne) {
                     System.out.println("Enter valid choice");
                 }
@@ -46,35 +87,34 @@ public class Main {
                         boolean done_0 = false;
                         while (!done_0) {
                             try {
-                                System.out.println("Enter number of trips");
+                                System.out.println("------Enter number of trips-----");
                                  tripsNumber = scanner.nextInt();
                                  done_0 = true;
                             }catch (InputMismatchException e_0){
-                                System.out.println("Enter valid trip numbers");
+                                System.out.println("------Enter valid trip numbers------");
                                 scanner.nextLine();
                             }
                         }
                         scanner.nextLine();  // Consume newline left-over
                         d = new Driver();
-                        System.out.println("add driver for the trip.....");
+                        System.out.println("------add driver for the trip------");
                         System.out.println();
-                        System.out.println("Enter Driver ID");
+                        System.out.println("------Enter Driver ID------");
                         d.setId(scanner.nextLine());
-                        System.out.println("Add Driver Name");
+                        System.out.println("------Add Driver Name------");
                         d.setName(scanner.nextLine());
                         boolean done_1 = false; // flag variable to be break point of the loop
                         while (!done_1) { // break the infinity loop when an exception happen
                             try {
-                                System.out.println("Add driver age");
+                                System.out.println("------Add driver age------");
                                 d.setAge(scanner.nextInt());
                                 done_1 = true; // break point
                             } catch (InputMismatchException e1) {
-                                System.out.println("please try again and Enter valid age ");
+                                System.out.println("------please try again and Enter valid age------ ");
                                 scanner.nextLine(); // break the infinity loop when an exception happen
                             }
                         }
-                        scanner.nextLine();  // Consume newline left-over;
-                        System.out.println("Add driver phoneNumber");
+                        System.out.println("------Add driver phoneNumber------");
                         // take phone number from the user
                         int driverPhoneNumber =scanner.nextInt();
                         // check if the user entering phone number in right way
@@ -93,21 +133,22 @@ public class Main {
 
                                }
                            } catch (InputMismatchException e1_1) {
-                               System.out.println("Please enter valid phone number for the driver ");
+                               System.out.println("------Please enter valid phone number for the driver------ ");
                                scanner.nextLine(); // break the infinity loop when an exception happen
                            }
                        }
-                        scanner.nextLine();  // Consume newline left-over;
-                        System.out.println("Add driver Gender");
+
+                        System.out.println("------Add driver Gender------");
                         d.setGender(scanner.nextLine());
+                        scanner.nextLine();  // Consume newline left-over;
                         boolean done_1_2 = false; // flag variable to be break point of the loop
                         while (!done_1_2) { // loop until done_1_2 be true value
                             try {
-                                System.out.println("Is Marred (true or false)");
+                                System.out.println("------Is Marred (true or false)------");
                                 d.setMarried(scanner.nextBoolean());
                                 done_1_2 = true; // break point
                             }catch (InputMismatchException e_1_2){
-                                System.out.println("Please Enter: " + " true " + " or: " + " false " );
+                                System.out.println("------Please Enter: " + " true " + " or: " + " false ------" );
                                 scanner.nextLine(); // break the infinity loop when an exception happen
                             }
                         }
@@ -121,32 +162,32 @@ public class Main {
                             boolean done_2 = false; // flag variable to be break point of the loop
                             while (!done_2) { // loop until done_1_2 be true value
                                 try {
-                                    System.out.println("Enter Trip ID");
+                                    System.out.println("------Enter Trip ID------");
                                     trip1.setTripNumber(scanner.nextInt());
                                     done_2 = true;// break point
                                 }catch (InputMismatchException e_2){
-                                    System.out.println("Enter Valid trip ID, try again!!");
+                                    System.out.println("########Enter Valid trip ID, try again!!######");
                                     scanner.nextLine();// break the infinity loop when an exception happen
                                 }
                             }
                             boolean done_2_1 = false; // flag variable to be break point of the loop
                             while (!done_2_1) {// loop until done_1_2 be true value
                                 try {
-                                    System.out.println("Enter Trip Maximum Passenger");
+                                    System.out.println("------Enter Trip Maximum Passenger------");
                                     scanner.nextLine();  // Consume newline left-over
                                     trip1.setMAXIMUM_NUMBER_OF_PASSENGER(scanner.nextInt());
                                     scanner.nextLine();  // Consume newline left-over
                                     done_2_1 = true;// break point
                                 }catch (InputMismatchException e2_1){
-                                    System.out.println("Enter valid Maximum Passenger for the trip!!, try again pls");
+                                    System.out.println("######Enter valid Maximum Passenger for the trip!!, try again pls#####");
                                     scanner.nextLine(); // break the infinity loop when an exception happen
                                 }
                             }
-                            System.out.println("Enter start time of trip");
+                            System.out.println("------Enter start time of trip------");
                             trip1.setStartTime(scanner.nextLine());
-                            System.out.println("Enter end time of trip");
+                            System.out.println("------Enter end time of trip------");
                             trip1.setEndTime(scanner.nextLine());
-                            System.out.println("Enter trip destination");
+                            System.out.println("------Enter trip destination------");
                             trip1.setDestination(scanner.nextLine());
                         }
                         // calling the tow mecthod thad adding anew trip and new driver inside the trip
@@ -160,11 +201,11 @@ public class Main {
                         int numberOfAddingPassengers =0;
                             while (!done_3_0) { // loop until done_3_0 be true value
                                 try {
-                                    System.out.println("Enter number of passenger you need to add");
-                                    numberOfAddingPassengers = Integer.parseInt(scanner.next());
+                                    System.out.println("------Enter number of passenger you need to add------");
+                                    numberOfAddingPassengers =scanner.nextInt();
                                     done_3_0 =true; // break point
                                 }catch (NumberFormatException e_3_0){
-                                    System.out.println("Enter Valid Input!!!!");
+                                    System.out.println("------Enter Valid Input!!!!------");
                                     scanner.nextLine(); // break the infinity loop when an exception happen
                                 }
                             }
@@ -172,20 +213,21 @@ public class Main {
                             // then storing all passenger information
                             for (int i = 0; i < numberOfAddingPassengers; i++) {
                                 passenger = new Passenger();
-                                System.out.println("Adding passenger to the trip...");
-                                scanner.nextLine();  // Consume newline left-over
-                                System.out.println("Enter Passenger ID");
+                                System.out.println("------Adding passenger to the trip------");
+
+                                scanner.nextLine();  // consumes the dangling newline character
+                                System.out.println("------Enter Passenger ID------");
                                 passenger.setId(scanner.nextLine());
-                                System.out.println("Add Passenger Name");
+                                System.out.println("------Add Passenger Name------");
                                 passenger.setName(scanner.nextLine());
                                 boolean done_3 = false; // flag variable to be break point of the loop
                                 while (!done_3) { // loop until done_1_2 be true value
                                     try {
-                                        System.out.println("Add Passenger age");
-                                        passenger.setAge(scanner.nextInt());
+                                        System.out.println("------Add Passenger age------");
+                                        passenger.setAge(Integer.parseInt(scanner.nextLine()));
                                         done_3 = true; // break point
                                     } catch (InputMismatchException e2) {
-                                        System.out.println("please try again and Enter valid age");
+                                        System.out.println("------please try again and Enter valid age------");
                                         scanner.nextLine(); // break the infinity loop when an exception happen
                                     }
                                 }
@@ -199,11 +241,20 @@ public class Main {
                                         passenger.setPhoneNumber(String.valueOf(passengerPhoneNumber));
                                     }
                                 }
-                                scanner.nextLine();  // Consume newline left-over;
-                                System.out.println("Enter Passenger Addresses");
+                                System.out.println("------Enter Passenger Addresses------");
                                 passenger.setAddress(scanner.nextLine());
-                                System.out.println("having ticket? (true or false)");
-                                passenger.setTicket(scanner.nextBoolean());
+                                scanner.nextLine(); // consumes the dangling newline character
+                                System.out.println("------having ticket? (true or false)------");
+                                boolean done_4_0 = false;
+                                while (!done_4_0) {
+                                    try {
+                                        passenger.setTicket(scanner.nextBoolean());
+                                        done_4_0 = true;
+                                    }catch (InputMismatchException e_4_0){
+                                        System.out.println("------Please Enter:  " +  "true"  +  " or: " +  " false------" );
+                                        scanner.nextLine();
+                                    }
+                                }
                                 // add all information of passenger inside the trip
                                 TripsMethodsSystem.addNewPassengerInTrip(trip1, passenger);
                             }
@@ -235,12 +286,12 @@ public class Main {
                         TripsMethodsSystem.exitFromSystem();
                         return;
                     default:
-                        System.out.println("You entered Invalid input try Again or press 7 to exit");
+                        System.out.println(">>>>>>>>>>>You entered Invalid input try Again or press 7 to exit<<<<<<<<<<<");
                 }
 
 
             } catch (InputMismatchException inputMismatchException) {
-                System.out.println("Enter valid inputs");
+                System.out.println(">>>>>>>>>>>Enter valid inputs<<<<<<<<<<<");
                 scanner.nextLine();
             }
 
